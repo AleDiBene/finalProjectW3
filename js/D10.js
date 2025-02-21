@@ -446,18 +446,68 @@ onlyInLastMillennium(movies);
   Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
 */
 
+const sumAllTheYears = function (movies) {
+  let totalYears = 0;
+  for (let i = 0; i < movies.length; i++) {
+    totalYears += movies[i].Year;
+  }
+  console.log(totalYears);
+};
+
+sumAllTheYears(movies);
+
 /* ESERCIZIO 17
   Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
 */
+
+const searchByTitle = function (string) {
+  const results = [];
+
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].Title.toLowerCase().includes(string.toLowerCase())) {
+      results.push(movies[i].Title);
+    }
+  }
+  if (results.length > 0) {
+    console.log("Film trovati:", results);
+  } else {
+    console.log("Nessun film trovato con il titolo:", string);
+  }
+};
+
+searchByTitle("Lord of war");
 
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 
+const searchAndDivide = function (string) {
+  const match = [];
+  const unmatch = [];
+
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].Title.toLowerCase().includes(string.toLowerCase())) {
+      match.push(movies[i]);
+    } else {
+      unmatch.push(movies[i]);
+    }
+  }
+  return { match, unmatch };
+};
+console.log(searchAndDivide("Lord"));
+
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+
+const removeIndex = function (n) {
+  movies.splice(n, 1);
+  console.log(movies);
+};
+console.log(movies);
+
+removeIndex(2);
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
@@ -518,5 +568,3 @@ onlyInLastMillennium(movies);
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
-
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
