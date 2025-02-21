@@ -67,9 +67,26 @@ console.log(me);
   Crea una funzione chiamata "dice": deve generare un numero casuale tra 1 e 6.
 */
 
+const dice = function () {
+  let randomN = Math.floor(Math.random() * 6 + 1);
+  console.log(randomN);
+};
+
+dice();
+
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
+
+const whoIsBigger = function (n1, n2) {
+  if (n1 < n2) {
+    console.log(n2 + " è maggiore di " + n1);
+  } else {
+    console.log(n1 + " è maggiore di " + n2);
+  }
+};
+
+whoIsBigger(8, 7);
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
@@ -77,10 +94,28 @@ console.log(me);
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
 
+const splitMe = function (string) {
+  const arrW = string.split("");
+  console.log(arrW);
+};
+
+splitMe("ciaone");
+
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
+
+const deleteOne = function (string, boolean) {
+  if (boolean === true) {
+    return string.slice(1);
+  } else {
+    return string.slice(0, -1);
+  }
+};
+
+console.log(deleteOne("salutiamo", true));
+console.log(deleteOne("salutiamo", false));
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
@@ -88,13 +123,61 @@ console.log(me);
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
 
+const onlyLetters = function (string) {
+  let result = string
+    .split("")
+    .filter((char) => isNaN(char))
+    .join("");
+  console.log(result);
+};
+
+onlyLetters("I have 4 dogs");
+
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
+const isThisAnEmail = function (string) {
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  return regex.test(string);
+};
+
+console.log(isThisAnEmail("example@domain.com"));
+console.log(isThisAnEmail("invalid-email@domain"));
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+
+const whatDayIsIt = function () {
+  const today = new Date();
+  const dayN = today.getDay(-1);
+
+  switch (dayN) {
+    case 0:
+      console.log("Domenica");
+      break;
+    case 1:
+      console.log("Lunedì");
+      break;
+    case 2:
+      console.log("Martedì");
+      break;
+    case 3:
+      console.log("Mercoledì");
+      break;
+    case 4:
+      console.log("Giovedì");
+      break;
+    case 5:
+      console.log("Venerdì");
+      break;
+    case 6:
+      console.log("Sabato");
+      break;
+  }
+};
+
+whatDayIsIt();
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -109,9 +192,40 @@ console.log(me);
   }
 */
 
+const rollTheDices = function (n) {
+  let sum = 0;
+  let values = [];
+  for (let i = 0; i < n; i++) {
+    const result = dice();
+    values.push(result);
+    sum += result;
+  }
+
+  return {
+    sum: sum,
+    values: values,
+  };
+};
+
+rollTheDices(3);
+
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
+
+const howManyDays = function (date) {
+  const currentDate = new Date();
+
+  const differenceInMillis = currentDate - new Date(date);
+
+  const differenceInDays = Math.floor(
+    differenceInMillis / (1000 * 60 * 60 * 24)
+  );
+
+  return differenceInDays;
+};
+
+console.log(howManyDays("2025-01-01"));
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
